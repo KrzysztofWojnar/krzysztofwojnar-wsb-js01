@@ -1,4 +1,4 @@
-import {getTimeZone} from './main.js';
+import { getTimeZone } from './main.js';
 
 const timeDiv = document.getElementById('actual-date');
 const months = [

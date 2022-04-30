@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IkarFly - Tanie linie lotnicze</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        IkarFly
+    </header>
+    <aside>
+        <div id="actual-date"></div>
+        <div id="ticket-search">
+            <label for="departure-airport">Departure:</label>
+            <select id="departure-airport"></select>
+            <label for="arrival-airport">Arrival:</label>
+            <select id="arrival-airport"></select>
+            <div id="ticket-details">
+                depaurture time: <span id="departure-time"></span><br>
+                duration: <span id="flight-duration"></span><br>
+                price: <span id="price"></span> <span id="currency"></span><br>
+                passengers: <input id="passengers" type="number" value="1" min="1">
+            </div>
+            <button id="buy-button">Buy now!</button>
+        </div>
+    </aside>
+    <main>
+        <article>
+            <h2>W katastrofach naszych samolotów zginęło już 10 000 pasażerów!</h2>
+            <p>Z tej okazji nasz prezes chciałby pogratulować i podziękować wszystkim, którzy do tej pory żyli zgodnie z zasadą "carpe diem" i korzystali z najwyższej jakości połączeń oferowanych przez nasz start-up!</p>
+        </article>
+        <article>
+            <h2>Potrzebujesz wynająć bombowiec na godziny?</h2>
+            <p>W związku ze zwiększonym zainteresowaniem ze strony rządów państw Europy Wschodniej wprowadziliśmy nową ofertę. Kliknij <a href="https://www.youtube.com/watch?v=AkMuzyKLWSY">tutaj</a> aby poznać szczegóły!</p>
+        </article>
+        <article>
+            <h2>Nie ignoruj dziwnych zachowań wokół siebie!</h2>
+            <p>Byłeś świadkiem przemocy? Pozostawiony bagaż? Nadużywanie alkoholu? Działająca lokówka pozostawiona bez opieki?</p>
+            <p>Wszyscy odpowiadamy za bezpieczeństwo!</p>
+            <p>Jeżeli zachowanie innego pasażera wzbudza twój niepokój, nie wachaj się! Pobierz, wydrukuj i wypełnij zgłoszenie! Następnie umieść je w kopercie z podpisem "IkarFly" i wrzuć do jednej ze specjalnie oznaczonych skrzynek, które są dostępne na każdym obsługiwanym lotnisku! Nasz konsultant odezwie się do Ciebie w ciągu 14 dni!</p>
+        </article>
+    </main>
+    
+    <footer></footer>
+    <div id="modal-background">
+        <div id="modal-window">Hello!</div>
+    </div>
+    <!-- <script src="bundle.js"></script> -->
+</body>
+</html>

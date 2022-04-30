@@ -1,7 +1,7 @@
 const http = require("http");
+const fs = require('fs').promises;
 const host = process.env.HOST || 'localhost';
 const port = process.env.PORT || 5000;
-const fs = require('fs').promises;
 
 const contentTypeHeaderKey = "Content-Type";
 const textHtmlHeaderValue = "text/html";
