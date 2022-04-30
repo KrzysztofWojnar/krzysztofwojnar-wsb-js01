@@ -1,0 +1,121 @@
+:root {
+    --first-dark: #333377;
+    --second-dark: rgb(80, 16, 16);
+    --text-on-dark: white;
+
+}
+header {
+    background-color: var(--first-dark);
+    color: var(--text-on-dark);
+    text-align: center;
+    font-size: 80px;
+    font-style: italic;
+    min-height: 10vh;
+    max-height: 100px;
+}
+main {
+    min-height: 67vh;
+}
+aside {
+    padding: auto;
+}
+aside>* {
+    margin: 16px auto;
+}
+footer {
+    background-color: var(--second-dark);
+    color: var(--text-on-dark);
+    min-height: 20vh;
+    order: 2;
+}
+@media only screen and (min-width: 768px) {
+    body {
+        display: grid;
+        grid-template-columns: 80% 20%
+    }
+
+    body>* {
+        border: #f0f0f0 1px solid;
+    }
+
+    header {
+        grid-column: 1/3;
+    }
+
+    main {
+        grid-column: 1/2;
+        order: 1;
+    }
+
+    aside {
+        grid-column: 2/3;
+        order: 2;
+    }
+
+    footer {
+        grid-column: 1/3;
+    }
+}
+
+main>article {
+    margin: 24px;
+    padding: 16px;
+    border: #6b6bf0 1px dotted;
+}
+
+
+
+#modal-background {
+
+    background-color: rgb(100, 100, 100);
+    background-color: rgba(100, 100, 100, 0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    min-width: 100vw;
+    min-height: 100vh;
+    display: none
+}
+
+#modal-window {
+    background-color: #f0f0f0;
+    border: black 1px solid;
+    text-align: center;
+    padding: 24px;
+    width: 400px;
+    height: 200px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+}
+
+#modal-window>* {
+    margin: 8px 0;
+}
+
+#actual-date {
+    text-align: center
+}
+
+#ticket-search {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    border: 1px solid black;
+    padding: 16px;
+}
+
+#ticket-details {
+    margin: 2px 16px;
+}
+
+input#passengers {
+    width: 3em;
+}
