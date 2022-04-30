@@ -53,20 +53,43 @@ function populateArrivals() {
         populateDetails();
     });
     tz = data.availableAirports[departureAirportNr].timeZone;
-    
-    // getTimeZone = () => departureAirportSelect.timeZone;
-
+    const now = new Date()
+        .toLocaleDateString('pl-PL', {tz})
+        .split('.')
+        .map(part => +part);
+    document.getElementById('date').value = now[2] +
+        '-' + (now[1] + '').padStart(2, '0') +
+        '-' + (now[0] + '').padStart(2, '0');
+    document.getElementById('date').min = document.getElementById('date').value;
 }
 
 departureAirportSelect.addEventListener('change', populateArrivals);
 populateArrivals();
 
 arrivalAirportSelect.addEventListener('change', populateDetails);
+const connectionToString = function() {
+    return "Flight from\n" +
+        this.departure + '\n' +
+        'to\n' + this.arrival + '\n' +
+        'on ' + this.date + '.\n' +
+        'Starts at ' + this.hour + '\n' +
+        'and will lasts ' + this.duration + '.';
 
+}
 buyButton.addEventListener('click', ()=>{
     const arrivalAirportNr = arrivalAirportSelect.value;
     const connection = currentConnections.filter(connection => connection.arrival==arrivalAirportNr)[0];
-    login({...connection, airplain: data.airplains[connection.airplain]});
+    arrivalAirportDetails = data.availableAirports[connection.arrival];
+    login({
+        ...connection,
+        date: document.getElementById('date').value,
+        passengers: document.getElementById('passengers').value,
+        airplain: data.airplains[connection.airplain],
+        departure: data.availableAirports[connection.departure],
+        arrival: arrivalAirportDetails,
+        targetCurrency: data.currencies[arrivalAirportDetails.currency],
+        toString: connectionToString
+    });
 });
 
 

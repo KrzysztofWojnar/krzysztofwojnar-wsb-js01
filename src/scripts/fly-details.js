@@ -11,9 +11,7 @@ export const prepareForm = function(connection) {
     mainElement.innerHTML = '';
     mainElement.style.display = 'flex';
     mainElement.style.flexDirection = 'column';
-    const planePlain = document.createElement('object');
-    planePlain.setAttribute('type', 'image/svg+xml');
-    planePlain.setAttribute('data', planes.get(connection.airplain));
+    const planePlain = document.createElement('div');
     planePlain.setAttribute('id', 'airplane-image');
     const luggageDiv = document.createElement('div');
     const luggageSelect = document.createElement('select');
@@ -30,7 +28,18 @@ export const prepareForm = function(connection) {
     luggageSelectLabel.innerText = 'Wybierz swój bagaż:';
     luggageDiv.appendChild(luggageSelectLabel);
     luggageDiv.appendChild(luggageSelect);
-    mainElement.appendChild(luggageDiv);
-    mainElement.appendChild(document.createComment('br'));
+    document.getElementsByTagName('aside')[0].appendChild(luggageDiv);
     mainElement.appendChild(planePlain);
+
+    fetch(planes.get(connection.airplain), {method: 'GET'})
+    .then(res => res.text())
+    .then(data => {
+        const workspace = document.createElement('div');
+        workspace.innerHTML = data;
+        const svgElement = workspace.getElementsByTagName('svg')[0];
+        planePlain.appendChild(svgElement)
+    });
+
+
+    
 }
