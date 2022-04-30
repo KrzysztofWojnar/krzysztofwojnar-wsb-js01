@@ -1,10 +1,17 @@
+import { airplains } from './data.js'
+
+const planes = new Map(airplains.map(name => [
+    name, require('../assets/planes/' + name + '.svg'),
+]));
+
+
 export const prepareForm = function(connection) {
     document.getElementById('ticket-search').style.display = 'none';
     const mainElement = document.getElementsByTagName('main')[0];
     mainElement.innerHTML = '';
     const planePlain = document.createElement('object');
     planePlain.setAttribute('type', 'image/svg+xml');
-    planePlain.setAttribute('data', connection.airplain + '.svg');
+    planePlain.setAttribute('data', planes.get(connection.airplain));
     const luggageDiv = document.createElement('div');
     const luggageSelect = document.createElement('select');
     luggageSelect.setAttribute('id', 'luggage-select');

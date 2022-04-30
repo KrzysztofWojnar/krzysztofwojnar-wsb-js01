@@ -21,16 +21,12 @@ const sendFile = function(url, res) {
 }
 
 const requestListener = function (req, res) {
-    switch (req.url) {
-        case '/bundle.js':
+    switch (true) {
+        case ('/bundle.js' == req.url):
             res.setHeader(contentTypeHeaderKey, "application/json");
             sendFile(req.url, res);
             break;
-        case '/Boeing_787-8.svg':
-            res.setHeader(contentTypeHeaderKey, textHtmlHeaderValue);
-            sendFile(req.url, res);
-            break;
-        case '/Boeing_787-8.svg':
+        case (/\/.*svg/).test(req.url):
             res.setHeader(contentTypeHeaderKey, textHtmlHeaderValue);
             sendFile(req.url, res);
             break;

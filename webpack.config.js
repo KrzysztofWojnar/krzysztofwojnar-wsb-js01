@@ -6,13 +6,19 @@ module.exports = {
         filename: "bundle.js"
     },
     module: {
-        rules: [{
-            test: /\.scss$/,
-            use: [
-                "style-loader",
-                "css-loader",
-                "sass-loader"
-            ]
-        }]
+        rules: [
+            {
+                test: /\.scss$/,
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    "sass-loader"
+                ]
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                type: 'asset/resource'
+            },
+        ]
     }
 }

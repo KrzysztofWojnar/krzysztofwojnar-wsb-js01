@@ -1,6 +1,6 @@
 import { modal } from './main.js';
 import { prepareForm } from './fly-details.js';
-const logins = require('./users.json');
+const logins = require('../users.json');
 
 const userNameInput = document.createElement('input');
 const passwordInput = document.createElement('input');
