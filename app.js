@@ -1,6 +1,5 @@
 const http = require("http");
 const fs = require('fs').promises;
-const host = process.env.HOST || 'localhost';
 const port = process.env.PORT || 5000;
 
 const contentTypeHeaderKey = "Content-Type";
@@ -26,7 +25,7 @@ const requestListener = function (req, res) {
             res.setHeader(contentTypeHeaderKey, "application/json");
             sendFile(req.url, res);
             break;
-        case (/\/.*svg/).test(req.url):
+        case (/\/[0-9a-f]*.svg/).test(req.url):
             res.setHeader(contentTypeHeaderKey, textHtmlHeaderValue);
             sendFile(req.url, res);
             break;
@@ -40,5 +39,5 @@ const requestListener = function (req, res) {
 
 const server = http.createServer(requestListener);
 server.listen(port, () => {
-    console.log(`Server is running on port ${port} (${host})`);
+    console.log(`Server is running on port ${port}`);
 });
