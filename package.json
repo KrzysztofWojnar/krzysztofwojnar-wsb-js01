@@ -2,10 +2,13 @@
   "name": "js01",
   "version": "1.0.0",
   "description": "",
-  "main": "actual_date.js",
+  "main": "app.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
-    "build": "webpack --mode=none",
-    "run": "node app.js"
+    "build": "webpack",
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
