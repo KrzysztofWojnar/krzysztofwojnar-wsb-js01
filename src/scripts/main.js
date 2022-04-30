@@ -79,7 +79,7 @@ const connectionToString = function() {
 buyButton.addEventListener('click', ()=>{
     const arrivalAirportNr = arrivalAirportSelect.value;
     const connection = currentConnections.filter(connection => connection.arrival==arrivalAirportNr)[0];
-    arrivalAirportDetails = data.availableAirports[connection.arrival];
+    const arrivalAirportDetails = data.availableAirports[connection.arrival];
     login({
         ...connection,
         date: document.getElementById('date').value,

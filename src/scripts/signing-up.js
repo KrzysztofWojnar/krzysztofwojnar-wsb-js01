@@ -22,9 +22,6 @@ const tryToLogin = function(connection) {
 }
 
 export function login(connection) {
-    prepareForm(connection);
-    return;
-    
     modal.open();
     const userNameLabel = document.createElement('label');
     userNameLabel.setAttribute('for', 'user-name-input');
