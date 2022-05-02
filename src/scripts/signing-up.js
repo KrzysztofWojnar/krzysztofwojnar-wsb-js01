@@ -1,6 +1,5 @@
 import { modal } from './main.js';
 import { prepareForm } from './fly-details.js';
-const logins = require('../users.json');
 
 const userNameInput = document.createElement('input');
 const passwordInput = document.createElement('input');
@@ -8,17 +7,44 @@ const errorMsg = document.createElement('div');
 errorMsg.style.color = 'red';
 
 const tryToLogin = function(connection) {
-    const user = logins.find(elem => elem.username === userNameInput.value);
-    if (user && user.password === passwordInput.value) {
-        modal.close();
-        prepareForm(connection);
-    } else {
-        errorMsg.innerText = "Login data are incorrect!";
-        modal.modalWindow.insertAdjacentElement(
+    fetch(
+        '/signup',
+        {
+            method: 'POST',
+            body: JSON.stringify({
+                login: userNameInput.value,
+                password: passwordInput.value
+            })
+        }
+    )
+    .then(res => {
+        const insertErrorMsg = () => modal.modalWindow.insertAdjacentElement(
             'afterbegin',
             errorMsg
-            )
-    }
+        );
+        switch (res.status) {
+            case 200:
+                res.json().then(data => {
+                    modal.close();
+                    prepareForm(connection);
+                });
+                break;
+            case 401:
+                errorMsg.innerText = "Login data are incorrect!";
+                insertErrorMsg();
+                break;
+            case 500:
+                errorMsg.innerText = "Internal Server Error!";
+                insertErrorMsg();
+                break;
+            default:
+                errorMsg.innerText = "Unexpected response.";
+                insertErrorMsg();
+                break;
+        }
+        console.log(res);
+        return ;
+    });
 }
 
 export function login(connection) {
@@ -43,4 +69,5 @@ export function login(connection) {
     confirmButton.innerText = 'Log in';
     confirmButton.addEventListener('click', ()=>tryToLogin(connection));
     modal.modalWindow.appendChild(confirmButton);
+    userNameInput.focus();
 }

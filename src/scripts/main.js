@@ -54,7 +54,7 @@ function populateArrivals() {
     });
     tz = data.availableAirports[departureAirportNr].timeZone;
     const now = new Date()
-        .toLocaleDateString('pl-PL', {tz})
+        .toLocaleDateString('pl-PL', {timeZone: tz})
         .split('.')
         .map(part => +part);
     document.getElementById('date').value = now[2] +
