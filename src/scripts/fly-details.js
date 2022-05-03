@@ -34,6 +34,10 @@ export const prepareForm = function (connection) {
             const workspace = document.createElement('div');
             workspace.innerHTML = data;
             const svgElement = workspace.getElementsByTagName('svg')[0];
-            planePlain.appendChild(svgElement)
+            planePlain.appendChild(svgElement);
+            const seats = document.querySelectorAll('#seats>g');
+            Array.from(seats).forEach(elem => elem.addEventListener('click', function() {
+                this.style.outline = "solid 3px black";
+            }));
         });
 }

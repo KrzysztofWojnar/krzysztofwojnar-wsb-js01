@@ -42,7 +42,6 @@ const tryToLogin = function (connection) {
                     insertErrorMsg();
                     break;
             }
-            console.log(res);
             return;
         });
 }
