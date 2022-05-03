@@ -40,12 +40,24 @@ const changeCurrency = function(value, newCurr) {
 }
 
 function populateDetails() {
+    const currencySelect = document.getElementById('currency');
     const arrivalAirportNr = arrivalAirportSelect.value;
     const connection = data.connections.find(conn => conn.arrival==arrivalAirportNr);
     document.getElementById('departure-time').innerText = connection.hour;
     document.getElementById('price').innerText = connection.price;
-    document.getElementById('currency').value = data.currencies[0];
-    document.getElementById('currency').addEventListener(
+    Array.from(currencySelect.getElementsByTagName('option')).forEach(
+        currOption => {if (!data.defaultCurrencies.includes(currOption.value)) currOption.remove();}
+    )
+    const destinationsCurrNr = data.availableAirports[arrivalAirportNr].currency;
+    const destinationsCurr = data.currencies[destinationsCurrNr];
+    if (!data.defaultCurrencies.includes(destinationsCurr)) {
+        const newCurr = document.createElement('option');
+        newCurr.value = destinationsCurr;
+        newCurr.innerText = destinationsCurr;
+        currencySelect.appendChild(newCurr);
+    }
+    currencySelect.value = data.currencies[0];
+    currencySelect.addEventListener(
         'change',
         function() {
             changeCurrency(
