@@ -1,5 +1,6 @@
 import * as data from './data.js';
 import { login } from './signing-up.js';
+import { fetchCurrencyValue } from './currency-picker.js';
 
 const departureAirportSelect = document.getElementById('departure-airport');
 const arrivalAirportSelect = document.getElementById('arrival-airport');
@@ -29,12 +30,30 @@ new Set(data.connections.map(connection => connection.departure)).forEach(airpor
     departureAirportSelect.appendChild(airportOption);
 });
 
+const changeCurrency = function(value, newCurr) {
+    buyButton.setAttribute('disabled', '');
+    fetchCurrencyValue(value, newCurr, newValue => {
+        document.getElementById('price').innerText = (+newValue).toFixed(2);
+        buyButton.removeAttribute('disabled');
+    })
+    
+}
+
 function populateDetails() {
     const arrivalAirportNr = arrivalAirportSelect.value;
     const connection = data.connections.find(conn => conn.arrival==arrivalAirportNr);
     document.getElementById('departure-time').innerText = connection.hour;
     document.getElementById('price').innerText = connection.price;
-    document.getElementById('currency').innerText = data.currencies[0];
+    document.getElementById('currency').value = data.currencies[0];
+    document.getElementById('currency').addEventListener(
+        'change',
+        function() {
+            changeCurrency(
+                connection.price,
+                this.value
+            );
+        }
+    )
     document.getElementById('flight-duration').innerText = connection.duration;
 }
 

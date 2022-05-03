@@ -63,16 +63,22 @@ const requestListener = function (req, res) {
             res.setHeader(contentTypeHeaderKey, textHtmlHeaderValue);
             sendFile(req.url, res);
             break;
-        case (/\/signup/).test(req.url):
+        case ('/signup' == req.url):
             if (req.method != 'POST') {
                 res.writeHead(400);
                 res.end('POST request expected!');
+                break;
             }
             let data = '';
             req.on('data', chunk => {
                 data += chunk;
             })
             req.on('end', () => {
+                if (!data) {
+                    res.writeHead(400);
+                    res.end('JSON in request body expected!');
+                    return;
+                }
                 const result = JSON.parse(data);
                 handleSignup(result, res);
             });
