@@ -10,5 +10,5 @@ export const fetchCurrencyValue = async function (originValue, destinationCurren
         '&to=' + destinationCurrency +
         '&amount=' + originValue +
         '&format=json'
-    ).then(resp => resp.json()).then(data=>callback(data.rates[destinationCurrency].rate_for_amount));
+    ).then(resp => resp.json()).then(data => callback(data.rates[destinationCurrency].rate_for_amount));
 }

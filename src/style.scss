@@ -4,9 +4,11 @@
     --text-on-dark: white;
 
 }
+
 body {
     margin: 0;
 }
+
 header {
     background-color: var(--first-dark);
     color: var(--text-on-dark);
@@ -14,24 +16,30 @@ header {
     font-size: 80px;
     font-style: italic;
 }
+
 main {
-    #airplane-image{
+    #airplane-image {
         svg {
             margin: 24px 0;
         }
+
         text-align: center;
     }
 }
+
 aside {
     padding: auto;
 }
+
 aside>* {
     margin: 16px auto;
 }
+
 footer {
     div {
         font-style: italic;
     }
+
     display: flex;
     justify-content: center;
     align-items: end;
@@ -41,6 +49,7 @@ footer {
     order: 2;
     padding: 24px
 }
+
 @media only screen and (min-width: 768px) {
     body {
         height: 100vh;

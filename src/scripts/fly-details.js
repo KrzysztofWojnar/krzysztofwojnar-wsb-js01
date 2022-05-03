@@ -3,9 +3,7 @@ import { airplains } from './data.js'
 const planes = new Map(airplains.map(name => [
     name, require('../assets/planes/' + name + '.svg'),
 ]));
-
-
-export const prepareForm = function(connection) {
+export const prepareForm = function (connection) {
     document.getElementById('ticket-search').style.display = 'none';
     const mainElement = document.getElementsByTagName('main')[0];
     mainElement.innerHTML = '';
@@ -30,16 +28,12 @@ export const prepareForm = function(connection) {
     luggageDiv.appendChild(luggageSelect);
     document.getElementsByTagName('aside')[0].appendChild(luggageDiv);
     mainElement.appendChild(planePlain);
-
-    fetch(planes.get(connection.airplain), {method: 'GET'})
-    .then(res => res.text())
-    .then(data => {
-        const workspace = document.createElement('div');
-        workspace.innerHTML = data;
-        const svgElement = workspace.getElementsByTagName('svg')[0];
-        planePlain.appendChild(svgElement)
-    });
-
-
-    
+    fetch(planes.get(connection.airplain), { method: 'GET' })
+        .then(res => res.text())
+        .then(data => {
+            const workspace = document.createElement('div');
+            workspace.innerHTML = data;
+            const svgElement = workspace.getElementsByTagName('svg')[0];
+            planePlain.appendChild(svgElement)
+        });
 }

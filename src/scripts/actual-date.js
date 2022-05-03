@@ -25,16 +25,16 @@ const daysOfWeek = [
     'Sobota'
 ];
 setInterval(
-    ()=>{
+    () => {
         const timeZone = getTimeZone();
         const nowLocalDate = new Date()
-            .toLocaleDateString('en-US', {timeZone});
+            .toLocaleDateString('en-US', { timeZone });
         const now = new Date()
-            .toLocaleDateString('pl-PL', {timeZone})
+            .toLocaleDateString('pl-PL', { timeZone })
             .split('.')
             .map(part => +part);
-        timeDiv.innerText = (new Date()).toLocaleTimeString('pl-PL', {timeZone}).toString() + '\n'
-            + now[0] + ' ' + months[now[1]-1] + ' '  + now[2] + '\n'
+        timeDiv.innerText = (new Date()).toLocaleTimeString('pl-PL', { timeZone }).toString() + '\n'
+            + now[0] + ' ' + months[now[1] - 1] + ' ' + now[2] + '\n'
             + daysOfWeek[(new Date(nowLocalDate)).getDay()];
     },
     1000
