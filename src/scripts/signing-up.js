@@ -7,6 +7,10 @@ const errorMsg = document.createElement('div');
 errorMsg.style.color = 'red';
 
 const tryToLogin = function (connection) {
+    console.log({
+        login: userNameInput.value,
+        password: passwordInput.value
+    });
     fetch(
         '/signup',
         {
@@ -24,7 +28,7 @@ const tryToLogin = function (connection) {
             );
             switch (res.status) {
                 case 200:
-                    res.json().then(data => {
+                    res.json().then(() => {
                         modal.close();
                         prepareForm(connection);
                     });
@@ -48,6 +52,7 @@ const tryToLogin = function (connection) {
 
 export function login(connection) {
     modal.open();
+    const form = document.createElement('form');
     const userNameLabel = document.createElement('label');
     userNameLabel.setAttribute('for', 'user-name-input');
     userNameLabel.innerText = 'username:'
@@ -55,18 +60,23 @@ export function login(connection) {
     userNameInput.setAttribute('id', 'user-name-input');
     userNameInput.setAttribute('type', 'text');
     const passwordLabel = document.createElement('label');
-    passwordLabel.setAttribute('for', 'user-name-input');
+    passwordLabel.setAttribute('for', 'user-password-input');
     passwordLabel.innerText = 'password:'
 
-    passwordInput.setAttribute('id', 'user-name-input');
+    passwordInput.setAttribute('id', 'user-password-input');
     passwordInput.setAttribute('type', 'password');
-    modal.modalWindow.appendChild(userNameLabel);
-    modal.modalWindow.appendChild(userNameInput);
-    modal.modalWindow.appendChild(passwordLabel);
-    modal.modalWindow.appendChild(passwordInput);
+    form.appendChild(userNameLabel);
+    form.appendChild(userNameInput);
+    form.appendChild(passwordLabel);
+    form.appendChild(passwordInput);
     const confirmButton = document.createElement('button');
     confirmButton.innerText = 'Log in';
-    confirmButton.addEventListener('click', () => tryToLogin(connection));
-    modal.modalWindow.appendChild(confirmButton);
+    confirmButton.addEventListener('click', event => {
+        event.preventDefault();
+        tryToLogin(connection);
+    });
+    form.appendChild(confirmButton);
+    form.appendChild(errorMsg);
+    modal.modalWindow.appendChild(form);
     userNameInput.focus();
 }

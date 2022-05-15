@@ -103,7 +103,7 @@ main>article {
     display: none
 }
 
-#modal-window {
+#modal-window>form {
     background-color: #f0f0f0;
     border: black 1px solid;
     text-align: center;
@@ -120,7 +120,7 @@ main>article {
     flex-direction: column;
 }
 
-#modal-window>* {
+#modal-window>form>* {
     margin: 8px 0;
 }
 
@@ -128,12 +128,19 @@ main>article {
     text-align: center
 }
 
-#ticket-search {
+.aside-content {
     display: flex;
     flex-direction: column;
     width: 240px;
     border: 1px solid black;
     padding: 16px;
+    text-align: center;
+}
+
+#hovered-seat {
+    font-size: large;
+    border: 3px solid black;
+    display: inline;
 }
 
 #ticket-details {
@@ -142,4 +149,24 @@ main>article {
 
 input#passengers {
     width: 3em;
+}
+
+.tooltipable {
+    cursor: pointer;
+    position: absolute;
+}
+
+
+.tooltip {
+    position: absolute;
+    top: 1.5em;
+    font-size: 0.9em;
+    padding: 1px 5px;
+    display: none;
+    color: white;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 4px;
+    // transition: opacity 0.1s ease-out;
+    z-index: 9;
+    text-align: left;
 }
