@@ -4,10 +4,7 @@ const planes = new Map(airplains.map(name => [
     name, require('../assets/planes/' + name + '.svg'),
 ]));
 
-const clickHandler = function(event) {
-    event.target.style.fill = 'rgb(0,0,0)';
 
-}
 
 const prepareLuggageMenu = function() {
     const luggageDiv = document.createElement('div');
@@ -28,7 +25,40 @@ const prepareLuggageMenu = function() {
     luggageDiv.appendChild(luggageSelect);
     return luggageDiv;
 }
+
+const seatsSelected = function (maxPassangers) {
+    const counterDiv = document.createElement('div');
+    counterDiv.setAttribute('class', 'aside-content');
+    counterDiv.style.display = 'block';
+    counterDiv.innerText = 'Zaznaczone miejsca:'
+    const selectedCounter = document.createElement('span');
+    selectedCounter.innerText = '0';
+    const maxPassangersSpan = document.createElement('span');
+    maxPassangersSpan.innerText = '/' + maxPassangers;
+    counterDiv.appendChild(document.createElement('br'));
+    counterDiv.appendChild(selectedCounter);
+    counterDiv.appendChild(maxPassangersSpan);
+    return {counterDiv, selectedCounter};
+};
+
 export const prepareForm = function (connection) {
+    let marked = [];
+    let counterDiv, selectedCounter;
+    ({counterDiv, selectedCounter} = seatsSelected(connection.passengers));
+    const clickHandler = function(event) {
+        if (marked.indexOf(event.target) === -1) {
+            if (marked.length >= connection.passengers) return;
+            marked.push(event.target);
+            event.target.setAttribute('backup-color-data', event.target.style.fill)
+            event.target.style.fill = 'rgb(0,0,0)';
+
+        } else {
+            event.target.style.fill = event.target.getAttribute('backup-color-data');
+            const pos = marked.indexOf(event.target);
+            marked = marked.slice(0, pos).concat(marked.slice(pos+1));
+        }
+        selectedCounter.innerText = marked.length
+    }
     document.getElementById('ticket-search').style.display = 'none';
     const mainElement = document.getElementsByTagName('main')[0];
     mainElement.innerHTML = '';
@@ -37,6 +67,7 @@ export const prepareForm = function (connection) {
     const planePlain = document.createElement('div');
     planePlain.setAttribute('id', 'airplane-image');
     document.getElementsByTagName('aside')[0].appendChild(prepareLuggageMenu());
+    document.getElementsByTagName('aside')[0].appendChild(counterDiv);
     const hoveredSeat = document.createElement('div');
     hoveredSeat.setAttribute('class', 'aside-content');
     hoveredSeat.setAttribute('id', 'hovered-seat');
@@ -53,14 +84,13 @@ export const prepareForm = function (connection) {
             const rows = Array.from(document.querySelectorAll('#colors .seats-row'));
             rows.forEach(row => {
                 const rowNumber = row.getAttribute('data-row');
-                Array.from(row.getElementsByTagName('path')).forEach((seat, index) => {
+                Array.from(row.children).forEach((seat, index) => {
                     seat.setAttribute(
                         'data-seat-id',
                         rowNumber + (10 + index).toString(36).toLocaleUpperCase()
                     );
                     seat.addEventListener('click', clickHandler);
                     seat.addEventListener('mouseenter', () => {
-                        console.log()
                         hoveredSeat.style.display = 'block';
                         hoveredSeat.innerText = seat.getAttribute('data-seat-id');
                     });
@@ -70,11 +100,5 @@ export const prepareForm = function (connection) {
                     });
                 })
             });
-
-
-            // const seats = document.querySelectorAll('#seats>g');
-            // Array.from(seats).forEach(elem => elem.addEventListener('click', function() {
-            //     this.style.outline = "solid 3px black";
-            // }));
         });
 }

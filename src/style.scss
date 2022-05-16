@@ -140,7 +140,6 @@ main>article {
 #hovered-seat {
     font-size: large;
     border: 3px solid black;
-    display: inline;
 }
 
 #ticket-details {
@@ -149,24 +148,4 @@ main>article {
 
 input#passengers {
     width: 3em;
-}
-
-.tooltipable {
-    cursor: pointer;
-    position: absolute;
-}
-
-
-.tooltip {
-    position: absolute;
-    top: 1.5em;
-    font-size: 0.9em;
-    padding: 1px 5px;
-    display: none;
-    color: white;
-    background: rgba(0, 0, 0, 0.75);
-    border-radius: 4px;
-    // transition: opacity 0.1s ease-out;
-    z-index: 9;
-    text-align: left;
 }

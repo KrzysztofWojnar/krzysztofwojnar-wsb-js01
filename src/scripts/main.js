@@ -105,7 +105,7 @@ buyButton.addEventListener('click', () => {
     login({
         ...connection,
         date: document.getElementById('date').value,
-        passengers: document.getElementById('passengers').value,
+        passengers: +document.getElementById('passengers').value,
         airplain: data.airplains[connection.airplain],
         departure: data.availableAirports[connection.departure],
         arrival: arrivalAirportDetails,
