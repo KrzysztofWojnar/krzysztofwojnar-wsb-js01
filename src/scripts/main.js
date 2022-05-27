@@ -1,14 +1,14 @@
 import * as data from './data.js';
 import { login } from './signing-up.js';
 import { fetchCurrencyValue } from './currency-picker.js';
-
+import { renderWeather } from './weather.js'
 const departureAirportSelect = document.getElementById('departure-airport');
 const arrivalAirportSelect = document.getElementById('arrival-airport');
 const buyButton = document.getElementById('buy-button');
 const modalBackgound = document.getElementById('modal-background');
 const modalWindow = document.getElementById('modal-window');
-let tz;
-export const getTimeZone = () => tz;
+let departureAirportObj;
+export const getTimeZone = () => departureAirportObj.timeZone ;
 export const modal = {
     open: function () {
         modalBackgound.style.display = 'block';
@@ -77,9 +77,10 @@ function populateArrivals() {
         arrivalAirportSelect.appendChild(airportOption);
         populateDetails();
     });
-    tz = data.availableAirports[departureAirportNr].timeZone;
+    departureAirportObj = data.availableAirports[departureAirportNr];
+    renderWeather(departureAirportObj.lon, departureAirportObj.lat);
     const now = new Date()
-        .toLocaleDateString('pl-PL', { timeZone: tz })
+        .toLocaleDateString('pl-PL', { timeZone: departureAirportObj.timeZone })
         .split('.')
         .map(part => +part);
     document.getElementById('date').value = now[2] +

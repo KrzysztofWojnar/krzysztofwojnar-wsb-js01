@@ -12,10 +12,10 @@ export const airplains = [
     'Embraer_ERJ-170'
 ];
 export const availableAirports = [
-    { city: 'Wrocław', timeZone: 'Europe/Warsaw', currency: 0 },
-    { city: 'Los Angeles', timeZone: 'America/Los_Angeles', currency: 2 },
-    { city: 'Irkutsk', timeZone: 'Asia/Irkutsk', currency: 3 },
-    { city: 'Berlin', timeZone: 'Europe/Berlin', currency: 1 },
+    { city: 'Wrocław', timeZone: 'Europe/Warsaw', currency: 0, lon: 17, lat: 51.1 },
+    { city: 'Los Angeles', timeZone: 'America/Los_Angeles', currency: 2, lon: -118, lat: 34 },
+    { city: 'Irkutsk', timeZone: 'Asia/Irkutsk', currency: 3, lon: 104.3, lat: 52.3 },
+    { city: 'Berlin', timeZone: 'Europe/Berlin', currency: 1, lon: 13.4, lat: 52.5 },
 ];
 export const connections = [
     { departure: 0, arrival: 1, hour: '16:00', duration: '6:51', airplain: 0, price: 300 },
