@@ -27,7 +27,4 @@ export const fetchCurrencyValue = async function (originValue, destinationCurren
                 '&format=json'
                 ).then(resp => resp.json()).then(data => callback(data.rates[destinationCurrency].rate_for_amount));
             });
-
-
-
 }

@@ -6,11 +6,14 @@ const passwordInput = document.createElement('input');
 const errorMsg = document.createElement('div');
 errorMsg.style.color = 'red';
 
+document
+    .getElementById('modal-background')
+    .addEventListener('click', () => modal.close());
+document
+    .getElementById('modal-window')
+    .addEventListener('click', event => event.stopPropagation());
+
 const tryToLogin = function (connection) {
-    console.log({
-        login: userNameInput.value,
-        password: passwordInput.value
-    });
     fetch(
         '/signup',
         {

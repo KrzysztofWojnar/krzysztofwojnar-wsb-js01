@@ -31,7 +31,6 @@ const changeCurrency = function (value, newCurr) {
     buyButton.setAttribute('disabled', '');
     fetchCurrencyValue(value, newCurr, newValue => {
         document.getElementById('price').innerText = (+newValue).toFixed(2);
-        console.log(value, newCurr);
         buyButton.removeAttribute('disabled');
     });
 }
