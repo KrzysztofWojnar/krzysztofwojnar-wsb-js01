@@ -130,7 +130,7 @@ main>article {
 .aside-content {
     display: flex;
     flex-direction: column;
-    width: 240px;
+    max-width: 240px;
     border: 1px solid black;
     padding: 16px;
     text-align: center;
