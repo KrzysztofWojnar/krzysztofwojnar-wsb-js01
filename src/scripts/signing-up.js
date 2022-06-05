@@ -4,6 +4,7 @@ import { prepareForm } from './fly-details.js';
 const userNameInput = document.createElement('input');
 const passwordInput = document.createElement('input');
 const errorMsg = document.createElement('div');
+const form = document.createElement('form');
 errorMsg.style.color = 'red';
 
 document
@@ -25,7 +26,7 @@ const tryToLogin = function (connection) {
         }
     )
         .then(res => {
-            const insertErrorMsg = () => modal.modalWindow.insertAdjacentElement(
+            const insertErrorMsg = () => form.insertAdjacentElement(
                 'afterbegin',
                 errorMsg
             );
@@ -55,7 +56,7 @@ const tryToLogin = function (connection) {
 
 export function login(connection) {
     modal.open();
-    const form = document.createElement('form');
+    
     const userNameLabel = document.createElement('label');
     userNameLabel.setAttribute('for', 'user-name-input');
     userNameLabel.innerText = 'username:'
