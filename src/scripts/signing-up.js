@@ -1,10 +1,13 @@
 import { modal } from './main.js';
 import { prepareForm } from './fly-details.js';
 
-const userNameInput = document.createElement('input');
-const passwordInput = document.createElement('input');
-const errorMsg = document.createElement('div');
 const form = document.createElement('form');
+const errorMsg = document.createElement('div');
+const userNameLabel = document.createElement('label');
+const userNameInput = document.createElement('input');
+const passwordLabel = document.createElement('label');
+const passwordInput = document.createElement('input');
+const confirmButton = document.createElement('button');
 errorMsg.style.color = 'red';
 
 document
@@ -56,24 +59,18 @@ const tryToLogin = function (connection) {
 
 export function login(connection) {
     modal.open();
-    
-    const userNameLabel = document.createElement('label');
     userNameLabel.setAttribute('for', 'user-name-input');
     userNameLabel.innerText = 'username:'
-
     userNameInput.setAttribute('id', 'user-name-input');
     userNameInput.setAttribute('type', 'text');
-    const passwordLabel = document.createElement('label');
     passwordLabel.setAttribute('for', 'user-password-input');
     passwordLabel.innerText = 'password:'
-
     passwordInput.setAttribute('id', 'user-password-input');
     passwordInput.setAttribute('type', 'password');
     form.appendChild(userNameLabel);
     form.appendChild(userNameInput);
     form.appendChild(passwordLabel);
     form.appendChild(passwordInput);
-    const confirmButton = document.createElement('button');
     confirmButton.innerText = 'Log in';
     confirmButton.addEventListener('click', event => {
         event.preventDefault();
