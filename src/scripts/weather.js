@@ -4,7 +4,7 @@ export const renderWeather = function(lon, lat) {
         method: 'GET',
         headers: {
             'X-RapidAPI-Host': 'weatherbit-v1-mashape.p.rapidapi.com',
-            'X-RapidAPI-Key': '3107d8b3fdmsh540df7f9420e204p147556jsn5cc1171a79bd'
+            'X-RapidAPI-Key': '1ab7838891msh8577f4d17eab75dp1132d7jsnf43ad4180920'
         }
     };
     

@@ -8,7 +8,7 @@ export const fetchCurrencyValue = async function (originValue, destinationCurren
         method: 'GET',
         headers: {
             'X-RapidAPI-Host': 'currency-converter5.p.rapidapi.com',
-            'X-RapidAPI-Key': '3107d8b3fdmsh540df7f9420e204p147556jsn5cc1171a79bd'
+            'X-RapidAPI-Key': '1ab7838891msh8577f4d17eab75dp1132d7jsnf43ad4180920'
         }
     };
     
