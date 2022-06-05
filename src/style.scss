@@ -90,10 +90,9 @@ main>article {
 
 
 #modal-background {
-
     background-color: rgb(100, 100, 100);
     background-color: rgba(100, 100, 100, 0.4);
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 0;
     z-index: 1;
